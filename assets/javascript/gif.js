@@ -1,3 +1,6 @@
+$(document).ready(function () {
+
+
 $("button").on("click", function() {
     // In this case, the "this" keyword refers to the button that was clicked
     var person = $(this).attr("data-person");
@@ -11,7 +14,7 @@ $("button").on("click", function() {
     })
       // After the data comes back from the API
       .then(function(response) {
-          console.log(response)
+          // console.log(response)
         // Storing an array of results in the results variable
         var results = response.data;
         // Looping over every result item
@@ -26,7 +29,7 @@ $("button").on("click", function() {
             var p = $("<p>").text("Rating: " + rating);
             // Creating an image tag
             var personImage = $("<img>");
-            // Giving the image tag an src attribute of a proprty pulled off the
+            // Giving the image tag a src attribute of a proprty pulled off the
             // result item
             personImage.attr("src", results[i].images.fixed_height.url);
             // Appending the paragraph and personImage we created to the "gifDiv" div we created
@@ -38,3 +41,7 @@ $("button").on("click", function() {
         }
       });
   });
+  
+
+
+});//ends document

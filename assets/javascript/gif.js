@@ -59,29 +59,32 @@ $(document).ready(function () {
 
       console.log(response);
       console.log("data", response.data);
-
-        for(var i = 0; i<response.data.length; i++){
+      $("#gifs-appear-here").empty();
+      for (var i = 0; i < response.data.length; i++) {
         // Creating a div to hold the person
-        var personDiv = $("<div class='person'>");
+        var divHolder = $("<div class='col-12 col-md-4'>");
+        var personDiv = $("<div class='person card'>");
         // Storing the rating data
         // var rating = response.data[i].rating;
 
         console.log("data detail", response.data);
         // Creating an element to have the rating displayed
         var tvRating = $("<p>").text(response.data[i].rating);
+        tvRating.addClass("card-body");
         // Displaying the rating
         personDiv.append(tvRating);
-        
 
-      
+
+
         var imgTv = response.data[i].images.original.url;
         // Creating an element to hold the image
         var images = $("<img>").attr("src", imgTv);
         // Appending the image
         personDiv.append(images);
+        divHolder.append(personDiv);
         // Putting the entire person above the previous persons
-        $("#persons-view").prepend(personDiv);
-        }
+        $("#gifs-appear-here").prepend(divHolder);
+      }
     });
   }
   // Function for displaying person data
@@ -95,8 +98,8 @@ $(document).ready(function () {
       // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
       var a = $("<button>");
       // Adding a class of person-btn to our button
-      
-      a.addClass("bttn-gradient bttn-md bttn-primary");
+
+      a.addClass("bttn-gradient gifBtn bttn-md bttn-primary");
       // Adding a data-attribute
       a.attr("data-person", persons[i]);
       // Providing the initial button text
@@ -115,8 +118,9 @@ $(document).ready(function () {
     // Calling renderButtons which handles the processing of our person array
     renderButtons();
   });
+
   // Adding a click event listener to all elements with a class of "person-btn"
-  $(document).on("click", ".bttn-gradient", displaypersonInfo);
+  $(document).on("click", ".gifBtn", displaypersonInfo);
   // Calling the renderButtons function to display the intial buttons
   renderButtons();
 

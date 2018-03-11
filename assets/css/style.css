@@ -1,13 +1,23 @@
+/* .container {
+  margin-top: 20px;
+} */
+body{
+
+  margin:auto;
+}
 .container {
   margin-top: 20px;
-}
-
-.container2 {
-  width: 100%;
-  padding: 50px;
+ 
+  padding: 5px;
   text-align: center;
   font-family: 'Limelight', cursive;
   font-size: 20px;
+}
+
+.card-body{
+  min-width: 100px;
+    margin: auto;
+
 }
 
 h1 {

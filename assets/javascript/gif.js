@@ -28,13 +28,13 @@ $(document).ready(function () {
             // Creating a paragraph tag with the result item's rating
             var p = $("<p>").text("Rating: " + rating);
             // Creating an image tag
-            var personImage = $("<img>");
+            var images = $("<img>");
             // Giving the image tag a src attribute of a proprty pulled off the
             // result item
-            personImage.attr("src", response.data[1][i].images.fixed_height.url);
-            // Appending the paragraph and personImage we created to the "gifDiv" div we created
+            images.attr("src", response.data[1][i].images.fixed_height.url);
+            // Appending the paragraph and images we created to the "gifDiv" div we created
             gifDiv.append(p);
-            gifDiv.append(personImage);
+            gifDiv.append(images);
             // Prepending the gifDiv to the "#gifs-appear-here" div in the HTML
             $("#gifs-appear-here").prepend(gifDiv);
           }
@@ -57,66 +57,35 @@ $(document).ready(function () {
       method: "GET"
     }).then(function (response) {
 
-      console.log(response);
-      console.log("data", response.data);
       $("#gifs-appear-here").empty();
       for (var i = 0; i < response.data.length; i++) {
         // Creating a div to hold the person
         var divHolder = $("<div class='col-12 col-md-4'>");
-        var personDiv = $("<div class='person card'>");
-        // Storing the rating data
-        // var rating = response.data[i].rating;
+        var personDiv = $("<div class='person-card'>");
 
-        console.log("data detail", response.data);
         // Creating an element to have the rating displayed
         var tvRating = $("<p>").text(response.data[i].rating);
         tvRating.addClass("card-body");
         // Displaying the rating
         personDiv.append(tvRating);
 
-
-
-//         var animated = results[i].images.fixed_height.url;
-//         var still = results[i].images.fixed_height_still.url;
-
-//         var personImage = $("<img>");
-//         personImage.attr("src", still);
-//         personImage.attr("data-still", still);
-//         personImage.attr("data-animate", animated);
-//         personImage.attr("data-state", "still");
-//         personImage.addClass("person-image");
-
-//         personDiv.append(p);
-//         personDiv.append(personImage);
-
-//         $("#gifs-appear-here").append(personDiv);
-//       }
-//     });
-// });
-
-// $(document).on("click", ".person-image", function() {
-
-//   var state = $(this).attr("data-state");
-
-//   if (state === "still") {
-//     $(this).attr("src", $(this).attr("data-animate"));
-//     $(this).attr("data-state", "animate");
-//   }
-//   else {
-//     $(this).attr("src", $(this).attr("data-still"));
-//     $(this).attr("data-state", "still");
-//   }
-// });
-
-
-
-
-
-
+        // var animated = results[i].images.original.url;
 
         var imgTv = response.data[i].images.fixed_height_still.url;
         // Creating an element to hold the image
         var images = $("<img>").attr("src", imgTv);
+
+        // images.attr("src", still);
+        
+        
+        
+        // images.attr("data-still", still);
+        // images.attr("data-animate", animated);
+        // images.attr("data-state", "still");
+        // images.addClass("person-image");
+
+
+
         // Appending the image
         personDiv.append(images);
         divHolder.append(personDiv);
@@ -125,6 +94,29 @@ $(document).ready(function () {
       }
     });
   }
+
+
+  // $(document).on("click", ".person-image", function() {
+
+  //   var state = $(this).attr("data-state");
+
+  //   if (state === "still") {
+  //     $(this).attr("src", $(this).attr("data-animate"));
+  //     $(this).attr("data-state", "animate");
+  //   }
+  //   else {
+  //     $(this).attr("src", $(this).attr("data-still"));
+  //     $(this).attr("data-state", "still");
+  //   }
+  // });
+
+
+
+
+
+
+
+
   // Function for displaying person data
   function renderButtons() {
     // Deleting the persons prior to adding new persons

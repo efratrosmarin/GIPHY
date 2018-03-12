@@ -69,20 +69,15 @@ $(document).ready(function () {
         // Displaying the rating
         personDiv.append(tvRating);
 
-        // var animated = results[i].images.original.url;
+        var animated = response.data[i].images.fixed_height.url;
 
         var imgTv = response.data[i].images.fixed_height_still.url;
         // Creating an element to hold the image
-        var images = $("<img>").attr("src", imgTv);
-
-        // images.attr("src", still);
-        
-        
-        
-        // images.attr("data-still", still);
-        // images.attr("data-animate", animated);
-        // images.attr("data-state", "still");
-        // images.addClass("person-image");
+        var images = $("<img>").attr("src", imgTv);        
+        images.attr("data-still", imgTv);
+        images.attr("data-animate", animated);
+        images.attr("data-state", "still");
+        images.addClass("person-image");
 
 
 
@@ -96,19 +91,19 @@ $(document).ready(function () {
   }
 
 
-  // $(document).on("click", ".person-image", function() {
+  $(document).on("click", ".person-image", function() {
 
-  //   var state = $(this).attr("data-state");
+    var state = $(this).attr("data-state");
 
-  //   if (state === "still") {
-  //     $(this).attr("src", $(this).attr("data-animate"));
-  //     $(this).attr("data-state", "animate");
-  //   }
-  //   else {
-  //     $(this).attr("src", $(this).attr("data-still"));
-  //     $(this).attr("data-state", "still");
-  //   }
-  // });
+    if (state === "still") {
+      $(this).attr("src", $(this).attr("data-animate"));
+      $(this).attr("data-state", "animate");
+    }
+    else {
+      $(this).attr("src", $(this).attr("data-still"));
+      $(this).attr("data-state", "still");
+    }
+  });
 
 
 
@@ -149,7 +144,7 @@ $(document).ready(function () {
     renderButtons();
   });
 
-  // Adding a click event listener to all elements with a class of "person-btn"
+  // Adding a click event listener to all elements with a class of "gifBtn"
   $(document).on("click", ".gifBtn", displaypersonInfo);
   // Calling the renderButtons function to display the intial buttons
   renderButtons();
